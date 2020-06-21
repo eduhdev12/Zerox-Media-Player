@@ -30,6 +30,8 @@ const express = require('express')
 const ffmpeg = require('ffmpeg')
 const app = express()
 const config = require('./config.json')
+var FFplay = require("ffplay");
+var player = new FFplay()
 
 app.set('view-engine', 'ejs')
 
@@ -40,6 +42,13 @@ app.get('/', (req, res) =>{
 app.get('/test', (req,res)=>{
     res.render('index.ejs')
     console.log('cacatr')
+    player = new FFplay('./1.mp3')
+})
+
+app.get('/stop', (req, res)=>{
+    res.render('index.ejs')
+    console.log('Stopped')
+    player.stop()
 })
 
 app.listen(config.port)
