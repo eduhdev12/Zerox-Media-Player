@@ -32,17 +32,37 @@ const app = express()
 const config = require('./config.json')
 var FFplay = require("ffplay");
 var player = new FFplay()
+const loudness = require('loudness')
+
+var load={
+    radio1namefront: config.radio1name,
+    radio2namefront: config.radio2name,
+    radio3namefront: config.radio2name,
+    radio4namefront: config.radio4name,
+    radio5namefront: config.radio5name
+}
+
+
+app.use( express.static( "public" ) );
 
 app.set('view-engine', 'ejs')
 
 app.get('/', (req, res) =>{
+    res.render('index.ejs', load)
+})
+
+app.get('/radio1', (req, res) =>{
     res.render('index.ejs')
 })
 
 app.get('/test', (req,res)=>{
     res.render('index.ejs')
     console.log('cacatr')
-    player = new FFplay('./1.mp3')
+    loudness.setVolume(45, (err) => {
+        // Done
+    })
+    //player = new FFplay('./1.mp3')
+    player = new FFplay("./1.mp3");
 })
 
 app.get('/stop', (req, res)=>{

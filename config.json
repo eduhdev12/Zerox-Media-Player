@@ -1,4 +1,13 @@
 {
     "port": "1234",
-    "ip": "localhost"
+    "radio1": "link",
+    "radio1name": "name",
+    "radio2": "link",
+    "radio2name": "name",
+    "radio3": "link",
+    "radio3name": "name",
+    "radio4": "link",
+    "radio4name": "name",
+    "radio5": "link",
+    "radio5name": "name"
 }
