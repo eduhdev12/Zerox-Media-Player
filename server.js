@@ -34,6 +34,7 @@ var FFplay = require("ffplay");
 var player = new FFplay()
 const loudness = require('loudness')
 var status = 'Not Playing'
+require('console-stamp')(console, 'HH:MM:ss');
 
 var load={
     radio1namefront: config.radio1name,
@@ -153,4 +154,6 @@ app.get('/stop', (req, res)=>{
     player.stop()
 })
 
-app.listen(config.port)
+app.listen(config.port, function(){
+    console.info(`Server started on port ${config.port}`);
+    });
