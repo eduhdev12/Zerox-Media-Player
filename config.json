@@ -1,7 +1,7 @@
 {
     "port": "1234",
-    "radio1": "link",
-    "radio1name": "name",
+    "radio1": "http://asculta.radiotaraf.com:7100/",
+    "radio1name": "taraf",
     "radio2": "link",
     "radio2name": "name",
     "radio3": "link",
