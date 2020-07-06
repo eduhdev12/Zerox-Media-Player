@@ -65,7 +65,7 @@ app.get('/radio1', (req, res) =>{
         playerstatus: `Playing ${status}`
     } //to update the playing status
     res.render('index.ejs', load)
-    console.log(`Playing ${config.radio1name} from adress ${config.radio1}`)
+    console.log("\x1b[36m",`Playing ${config.radio1name} from adress ${config.radio1}`)
     player = new FFplay(config.radio1)
 })
 
@@ -80,7 +80,7 @@ app.get('/radio2', (req, res) =>{
         playerstatus: `Playing ${status}`
     } //to update the playing status
     res.render('index.ejs', load)
-    console.log(`Playing ${config.radio2name} from adress ${config.radio2}`)
+    console.log("\x1b[36m",`Playing ${config.radio2name} from adress ${config.radio2}`)
     player = new FFplay(config.radio2)
 })
 
@@ -95,7 +95,7 @@ app.get('/radio3', (req, res) =>{
         playerstatus: `Playing ${status}`
     } //to update the playing status
     res.render('index.ejs', load)
-    console.log(`Playing ${config.radio3name} from adress ${config.radio3}`)
+    console.log("\x1b[36m",`Playing ${config.radio3name} from adress ${config.radio3}`)
     player = new FFplay(config.radio3)
 })
 
@@ -110,7 +110,7 @@ app.get('/radio4', (req, res) =>{
         playerstatus: `Playing ${status}`
     } //to update the playing status
     res.render('index.ejs', load)
-    console.log(`Playing ${config.radio4name} from adress ${config.radio4}`)
+    console.log("\x1b[36m",`Playing ${config.radio4name} from adress ${config.radio4}`)
     player = new FFplay(config.radio4)
 })
 
@@ -125,7 +125,7 @@ app.get('/radio5', (req, res) =>{
         playerstatus: `Playing ${status}`
     } //to update the playing status
     res.render('index.ejs', load)
-    console.log(`Playing ${config.radio5name} from adress ${config.radio5}`)
+    console.log("\x1b[36m",`Playing ${config.radio5name} from adress ${config.radio5}`)
     player = new FFplay(config.radio5)
 })
 
@@ -150,10 +150,10 @@ app.get('/stop', (req, res)=>{
         playerstatus: `Not Playing`
     } //to update the playing status
     res.render('index.ejs', load)
-    console.log('Stopped Playing')
+    console.log("\x1b[36m", 'Stopped Playing')
     player.stop()
 })
 
 app.listen(config.port, function(){
-    console.info(`Server started on port ${config.port}`);
+    console.info("\x1b[33m", `Server started on port ${config.port}`);
     });
