@@ -35,6 +35,7 @@ var player = new FFplay()
 const loudness = require('loudness')
 var status = 'Not Playing'
 require('console-stamp')(console, 'HH:MM:ss');
+var playing = 0
 
 var load={
     radio1namefront: config.radio1name,
@@ -55,6 +56,9 @@ app.get('/', (req, res) =>{
 })
 
 app.get('/radio1', (req, res) =>{
+    if(playing == 1){
+        player.stop()
+    }
     status= config.radio1name
     var load={
         radio1namefront: config.radio1name,
@@ -67,9 +71,13 @@ app.get('/radio1', (req, res) =>{
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio1name} from adress ${config.radio1}`)
     player = new FFplay(config.radio1)
+    playing = 1
 })
 
 app.get('/radio2', (req, res) =>{
+    if(playing == 1){
+        player.stop()
+    }
     status= config.radio2name
     var load={
         radio1namefront: config.radio1name,
@@ -82,9 +90,13 @@ app.get('/radio2', (req, res) =>{
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio2name} from adress ${config.radio2}`)
     player = new FFplay(config.radio2)
+    playing = 1
 })
 
 app.get('/radio3', (req, res) =>{
+    if(playing == 1){
+        player.stop()
+    }
     status= config.radio3name
     var load={
         radio1namefront: config.radio1name,
@@ -97,9 +109,13 @@ app.get('/radio3', (req, res) =>{
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio3name} from adress ${config.radio3}`)
     player = new FFplay(config.radio3)
+    playing = 1
 })
 
 app.get('/radio4', (req, res) =>{
+    if(playing == 1){
+        player.stop()
+    }
     status= config.radio4name
     var load={
         radio1namefront: config.radio1name,
@@ -112,9 +128,13 @@ app.get('/radio4', (req, res) =>{
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio4name} from adress ${config.radio4}`)
     player = new FFplay(config.radio4)
+    playing = 1
 })
 
 app.get('/radio5', (req, res) =>{
+    if(playing == 1){
+        player.stop()
+    }
     status= config.radio5name
     var load={
         radio1namefront: config.radio1name,
@@ -127,6 +147,7 @@ app.get('/radio5', (req, res) =>{
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio5name} from adress ${config.radio5}`)
     player = new FFplay(config.radio5)
+    playing = 1
 })
 
 app.get('/test', (req,res)=>{
@@ -140,7 +161,6 @@ app.get('/test', (req,res)=>{
 })
 
 app.get('/stop', (req, res)=>{
-    status= 'Radio ZU'
     var load={
         radio1namefront: config.radio1name,
         radio2namefront: config.radio2name,
@@ -152,6 +172,7 @@ app.get('/stop', (req, res)=>{
     res.render('index.ejs', load)
     console.log("\x1b[36m", 'Stopped Playing')
     player.stop()
+    playing = 0
 })
 
 app.listen(config.port, function(){
