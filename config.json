@@ -2,12 +2,12 @@
     "port": "1234",
     "radio1": "http://asculta.radiotaraf.com:7100/",
     "radio1name": "taraf",
-    "radio2": "link",
-    "radio2name": "name",
-    "radio3": "link",
-    "radio3name": "name",
-    "radio4": "link",
-    "radio4name": "name",
-    "radio5": "link",
-    "radio5name": "name"
+    "radio2": "http://stream.profm.ro:8012/profm.mp3",
+    "radio2name": "profm",
+    "radio3": "",
+    "radio3name": "",
+    "radio4": "",
+    "radio4name": "",
+    "radio5": "",
+    "radio5name": ""
 }

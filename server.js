@@ -39,7 +39,7 @@ require('console-stamp')(console, 'HH:MM:ss');
 var load={
     radio1namefront: config.radio1name,
     radio2namefront: config.radio2name,
-    radio3namefront: config.radio2name,
+    radio3namefront: config.radio3name,
     radio4namefront: config.radio4name,
     radio5namefront: config.radio5name,
     playerstatus: status
@@ -59,7 +59,7 @@ app.get('/radio1', (req, res) =>{
     var load={
         radio1namefront: config.radio1name,
         radio2namefront: config.radio2name,
-        radio3namefront: config.radio2name,
+        radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
         playerstatus: `Playing ${status}`
@@ -74,7 +74,7 @@ app.get('/radio2', (req, res) =>{
     var load={
         radio1namefront: config.radio1name,
         radio2namefront: config.radio2name,
-        radio3namefront: config.radio2name,
+        radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
         playerstatus: `Playing ${status}`
@@ -89,7 +89,7 @@ app.get('/radio3', (req, res) =>{
     var load={
         radio1namefront: config.radio1name,
         radio2namefront: config.radio2name,
-        radio3namefront: config.radio2name,
+        radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
         playerstatus: `Playing ${status}`
@@ -104,7 +104,7 @@ app.get('/radio4', (req, res) =>{
     var load={
         radio1namefront: config.radio1name,
         radio2namefront: config.radio2name,
-        radio3namefront: config.radio2name,
+        radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
         playerstatus: `Playing ${status}`
@@ -119,7 +119,7 @@ app.get('/radio5', (req, res) =>{
     var load={
         radio1namefront: config.radio1name,
         radio2namefront: config.radio2name,
-        radio3namefront: config.radio2name,
+        radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
         playerstatus: `Playing ${status}`
@@ -144,7 +144,7 @@ app.get('/stop', (req, res)=>{
     var load={
         radio1namefront: config.radio1name,
         radio2namefront: config.radio2name,
-        radio3namefront: config.radio2name,
+        radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
         playerstatus: `Not Playing`
