@@ -1,62 +1,61 @@
 <!doctype html>
-<html lang="en">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <title>Zerox Media Player</title>
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Cormorant:400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Playfair Display:400&display=swap" rel="stylesheet" />
 
-<body>
-    <h1>Hello, world!</h1>
-    <div class="container">
-    <div class="vertical-center">
-    <!-- <div class="text-center"> -->
-        <img src="/img/buton.png" class="rounded" alt="..." width="20" height="20">
-        <img src="/img/buton.png" class="rounded" alt="..."width="20" height="20">
-        <img src="/img/buton.png" class="rounded" alt="..."width="20" height="20">
-        <img src="/img/buton.png" class="rounded" alt="..."width="20" height="20">
-        <img src="/img/buton.png" class="rounded" alt="..."width="20" height="20">
-      <!-- </div> -->
-      </div>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+  <div class="main" style="justify-content: flex-start; align-items: center">
+    <div class="row" style="justify-content: center; flex-grow: 0; min-width: 50px; min-height: 50px"><p class="paragraph" style="min-height: 10px"> <!--width: 70px;-->
+        Zerox Media Player
+      </p>
     </div>
-
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-4">
-                <div class="card card-body">Center</div>
-            </div>
-            <div class="col-4">
-                <div class="card text-white bg-danger">
-                    <div class="card-body">
-                        <h3 class="card-title">Taller1</h3>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn text-white border-light">Outline</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card card-body">Center</div>
-            </div>
+    <div class="row" style="min-width: 50px; min-height: 50px">
+      <a href="/radio1"><div class="image" style="width: 60px; height: 60px; background-image: url(/img/buton.png); color: #fff;">
+        <p class="paragraph" style="width: 50px; min-height: 10px">
+            <%= radio1namefront %>
+      </p></div></a>
+      <a href="/radio2"><div class="image" style="width: 60px; height: 60px; background-image: url(/img/buton.png); color: #fff;">
+        <p class="paragraph" style="width: 50px; min-height: 10px">
+            <%= radio2namefront %>
+      </p></div></a>
+      <a href="/radio3"><div class="image" style="width: 60px; height: 60px; background-image: url(/img/buton.png); color: #fff;">
+        <p class="paragraph" style="width: 50px; min-height: 10px">
+            <%= radio3namefront %>
+      </p></div></a>
+      <a href="/radio4"><div class="image" style="width: 60px; height: 60px; background-image: url(/img/buton.png); color: #fff;">
+        <p class="paragraph" style="width: 50px; min-height: 10px">
+            <%= radio4namefront %>
+      </p></div></a>
+      <a href="/radio5"><div class="image" style="width: 60px; height: 60px; background-image: url(/img/buton.png); color: #fff;">
+        <p class="paragraph" style="width: 50px; min-height: 10px">
+            <%= radio5namefront %>
+      </p></div></a>
+    </div>
+    <div class="navigation-footer">
+        <!-- <i class="icon fa fa-bars"></i> --buton -->
+        <a href="https://discord.gg/"><i class="icon fab fa-discord" href="https://discord.gg/" style="color: #A7A7A7;"></i></a>
+        <a href="/stop"><i class="icon fa fa-pause" href="https://discord.gg/" style="color: #A7A7A7;"></i></a>
+        <div class="row" style="flex-grow: 0; min-width: 50px; min-height: 50px">
+            <p class="paragraph" style="min-height: 10px"> <!--width: 50px; -->
+                <%= playerstatus %>
+              </p>
+          <!-- <i class="icon fa fa-envelope"></i>
+          <i class="icon fa fa-image"></i>
+          <i class="icon fa fa-share-square"></i> -->
         </div>
-    </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
-</body>
-
+      </div>
+  </div>
+  </body>
 </html>
