@@ -36,7 +36,6 @@ const loudness = require('loudness')
 var status = 'Not Playing'
 require('console-stamp')(console, 'HH:MM:ss');
 var playing = 0
-const discord = require("discord.js")
 
 var load={
     radio1namefront: config.radio1name,
