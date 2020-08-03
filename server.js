@@ -1,41 +1,16 @@
-// const http = require('http')
-// const fs = require('fs')
-// const config = require("./config.json")
-
-// const server = http.createServer(function(req, res) {
-//     res.writeHead(200, { 'Content-Type': 'text/html'})
-//     fs.readFile('index.html', function(error, data) {
-//         if(error)
-//         {
-//             res.writeHead(404)
-//             res.write('Error page not found!')
-//         }
-//         else{
-//             res.write(data)
-//         }
-//         res.end()
-//     })
-
-// })
-
-// server.listen(config.port, function(error){
-//     if(error) {
-//         console.log('Error on the server!')
-//     }
-//     else{
-//         console.log(`Server is listening on localhost:${config.port}`)
-//     }
-// })
 const express = require('express')
 const ffmpeg = require('ffmpeg')
 const app = express()
 const config = require('./config.json')
 var FFplay = require("ffplay");
 var player = new FFplay()
-const loudness = require('loudness')
+const loudness = require('loudness');
+const e = require('express');
 var status = 'Not Playing'
 require('console-stamp')(console, 'HH:MM:ss');
 var playing = 0
+var volume
+var currentstation
 
 var load={
     radio1namefront: config.radio1name,
@@ -43,7 +18,8 @@ var load={
     radio3namefront: config.radio3name,
     radio4namefront: config.radio4name,
     radio5namefront: config.radio5name,
-    playerstatus: status
+    playerstatus: status,
+    currentvolume: volume
 }
 
 
@@ -52,8 +28,135 @@ app.use( express.static( "public" ) );
 app.set('view-engine', 'ejs')
 
 app.get('/', (req, res) =>{
+    if(currentstation==`stop`)
+    {
+        var load={
+            radio1namefront: config.radio1name,
+            radio2namefront: config.radio2name,
+            radio3namefront: config.radio3name,
+            radio4namefront: config.radio4name,
+            radio5namefront: config.radio5name,
+            playerstatus: `Not Playing`,
+            currentvolume: volume
+        }
+    }
+    else{
+        var load={
+            radio1namefront: config.radio1name,
+            radio2namefront: config.radio2name,
+            radio3namefront: config.radio3name,
+            radio4namefront: config.radio4name,
+            radio5namefront: config.radio5name,
+            playerstatus: `Playing ${currentstation}`,
+            currentvolume: volume
+        }
+    }
+
     res.render('index.ejs', load)
 })
+
+app.get('/down', function(req,res){
+    if(volume==0){
+        volume = 0
+        console.log('Unable to down the volume')
+    }
+    else volume = volume - 25;
+ 
+    if(playing==0)
+    {
+        var load={
+            radio1namefront: config.radio1name,
+            radio2namefront: config.radio2name,
+            radio3namefront: config.radio3name,
+            radio4namefront: config.radio4name,
+            radio5namefront: config.radio5name,
+            playerstatus: `Not Playing`,
+            currentvolume: volume
+        } 
+    }
+    if(playing==1)
+    {
+        var load={
+            radio1namefront: config.radio1name,
+            radio2namefront: config.radio2name,
+            radio3namefront: config.radio3name,
+            radio4namefront: config.radio4name,
+            radio5namefront: config.radio5name,
+            playerstatus: `Playing ${currentstation}`,
+            currentvolume: volume
+        }   
+    }
+    res.render('index.ejs', load)
+    loudness.setVolume(volume, (err) => {
+        // Done
+    })
+    console.log(`Volume was setted on ${volume}`)
+})
+
+app.get('/up', function(req,res){
+    if(volume==100){
+        volume = 100
+        console.log('Unable to up the volume')
+    }
+    else volume = volume + 25; 
+    if(playing==0)
+    {
+        var load={
+            radio1namefront: config.radio1name,
+            radio2namefront: config.radio2name,
+            radio3namefront: config.radio3name,
+            radio4namefront: config.radio4name,
+            radio5namefront: config.radio5name,
+            playerstatus: `Not Playing`,
+            currentvolume: volume
+        } 
+    }
+    if(playing==1)
+    {
+        var load={
+            radio1namefront: config.radio1name,
+            radio2namefront: config.radio2name,
+            radio3namefront: config.radio3name,
+            radio4namefront: config.radio4name,
+            radio5namefront: config.radio5name,
+            playerstatus: `Playing ${currentstation}`,
+            currentvolume: volume
+        }   
+    }
+    res.render('index.ejs', load)
+    loudness.setVolume(volume, (err) => {
+        // Done
+    })
+    console.log(`Volume was setted on ${volume}`)
+})
+
+app.get('/set', function(req, res){
+    var load={
+        radio1namefront: config.radio1name,
+        radio2namefront: config.radio2name,
+        radio3namefront: config.radio3name,
+        radio4namefront: config.radio4name,
+        radio5namefront: config.radio5name,
+        playerstatus: status,
+        currentvolume: req.query.volume
+    }    
+    res.render('test.ejs', load)
+    volume = req.query.volume
+    loudness.setVolume(volume, (err) => {
+        // Done
+    })
+    console.log("\x1b[36m",`Volume was setted on ${volume}`)
+
+})
+
+app.get('/p/:tagId', function(req, res) {
+    console.log("1tagId is set to " + req.params.tagId);
+  });
+
+app.get('/p', function(req, res) {
+    console.log("2tagId is set to " + req.query.tagId);
+  });
+
 
 app.get('/radio1', (req, res) =>{
     if(playing == 1){
@@ -66,12 +169,14 @@ app.get('/radio1', (req, res) =>{
         radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
-        playerstatus: `Playing ${status}`
+        playerstatus: `Playing ${status}`,
+        currentvolume: volume
     } //to update the playing status
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio1name} from adress ${config.radio1}`)
     player = new FFplay(config.radio1)
     playing = 1
+    currentstation = config.radio1name
 })
 
 app.get('/radio2', (req, res) =>{
@@ -85,12 +190,14 @@ app.get('/radio2', (req, res) =>{
         radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
-        playerstatus: `Playing ${status}`
+        playerstatus: `Playing ${status}`,
+        currentvolume: volume
     } //to update the playing status
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio2name} from adress ${config.radio2}`)
     player = new FFplay(config.radio2)
     playing = 1
+    currentstation = config.radio2name
 })
 
 app.get('/radio3', (req, res) =>{
@@ -104,12 +211,14 @@ app.get('/radio3', (req, res) =>{
         radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
-        playerstatus: `Playing ${status}`
+        playerstatus: `Playing ${status}`,
+        currentvolume: volume
     } //to update the playing status
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio3name} from adress ${config.radio3}`)
     player = new FFplay(config.radio3)
     playing = 1
+    currentstation = config.radio3name
 })
 
 app.get('/radio4', (req, res) =>{
@@ -123,12 +232,14 @@ app.get('/radio4', (req, res) =>{
         radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
-        playerstatus: `Playing ${status}`
+        playerstatus: `Playing ${status}`,
+        currentvolume: volume
     } //to update the playing status
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio4name} from adress ${config.radio4}`)
     player = new FFplay(config.radio4)
     playing = 1
+    currentstation = config.radio4name
 })
 
 app.get('/radio5', (req, res) =>{
@@ -142,12 +253,14 @@ app.get('/radio5', (req, res) =>{
         radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
-        playerstatus: `Playing ${status}`
+        playerstatus: `Playing ${status}`,
+        currentvolume: volume
     } //to update the playing status
     res.render('index.ejs', load)
     console.log("\x1b[36m",`Playing ${config.radio5name} from adress ${config.radio5}`)
     player = new FFplay(config.radio5)
     playing = 1
+    currentstation = config.radio5name
 })
 
 app.get('/test', (req,res)=>{
@@ -167,14 +280,28 @@ app.get('/stop', (req, res)=>{
         radio3namefront: config.radio3name,
         radio4namefront: config.radio4name,
         radio5namefront: config.radio5name,
-        playerstatus: `Not Playing`
+        playerstatus: `Not Playing`,
+        currentvolume: volume
     } //to update the playing status
     res.render('index.ejs', load)
     console.log("\x1b[36m", 'Stopped Playing')
     player.stop()
     playing = 0
+    currentstation = `stop`
 })
 
 app.listen(config.port, function(){
     console.info("\x1b[33m", `Server started on port ${config.port}`);
+    if(config.webvolume==0)
+    {
+        console.log('Using local volume')
+    }
+    else{
+        console.log('Using web volume')
+        loudness.setVolume(100, (err) => {
+            // Done
+        })
+        volume = 100
+        console.log(volume)
+    }
     });
