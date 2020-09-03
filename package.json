@@ -29,6 +29,7 @@
     "express": "^4.17.1",
     "ffmpeg": "0.0.4",
     "ffplay": "^1.1.0",
-    "loudness": "^0.3.0"
+    "loudness": "^0.3.0",
+    "request": "^2.88.2"
   }
 }
