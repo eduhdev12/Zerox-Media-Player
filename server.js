@@ -311,7 +311,7 @@ app.listen(config.port, function(){
 
 function check()
 {
-    request('https://raw.githubusercontent.com/eduhdev12/to-do-list/master/pwd-version.txt', function (error, response, body) {
+    request('https://raw.githubusercontent.com/eduhdev12/Zerox-Media-Player/master/version.txt', function (error, response, body) {
          const version = JSON.parse(body)
         if(!version=="0.1")
         {
