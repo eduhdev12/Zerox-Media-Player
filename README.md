@@ -2,6 +2,7 @@
 
 A simple customizable remote media player that supports radio streaming channels.
 
+[Installation Tutorial](https://www.youtube.com/watch?v=XHnL0YEjh9o)
 [Discord](https://discord.gg/c6EXUwN)
 
 ### Self-Hosting
