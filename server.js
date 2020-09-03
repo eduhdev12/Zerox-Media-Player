@@ -12,7 +12,7 @@ var status = 'Not Playing'
 require('console-stamp')(console, 'HH:MM:ss');
 var playing = 0
 var volume
-var currentstation = "stop" // salman 
+var currentstation = "stop" 
 
 var load={
     radio1namefront: config.radio1name,
