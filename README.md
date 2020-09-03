@@ -26,7 +26,7 @@ All in one line & if that doesn't do it, try installing them seperately.
 Windows
 ```
 run install.bat
-download ffmpeg files and drop in the Media-Player folder(https://johnvansickle.com/ffmpeg/)
+download ffmpeg files and drop in the Media-Player folder(https://ffmpeg.zeranoe.com/builds/)
 customize your config.json
 run start.bat
 enjoy your new remote media player!
