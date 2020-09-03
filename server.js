@@ -1,16 +1,18 @@
 const express = require('express')
 const ffmpeg = require('ffmpeg')
+var http = require('http');
 const app = express()
 const config = require('./config.json')
 var FFplay = require("ffplay");
 var player = new FFplay()
 const loudness = require('loudness');
 const e = require('express');
+const request = require('request');
 var status = 'Not Playing'
 require('console-stamp')(console, 'HH:MM:ss');
 var playing = 0
 var volume
-var currentstation = "stop"
+var currentstation = "stop" // salman 
 
 var load={
     radio1namefront: config.radio1name,
@@ -291,6 +293,7 @@ app.get('/stop', (req, res)=>{
 })
 
 app.listen(config.port, function(){
+    check()
     console.info("\x1b[33m", `Server started on port ${config.port}`);
     if(config.webvolume==0)
     {
@@ -305,3 +308,15 @@ app.listen(config.port, function(){
         console.log(volume)
     }
     });
+
+function check()
+{
+    request('https://raw.githubusercontent.com/eduhdev12/to-do-list/master/pwd-version.txt', function (error, response, body) {
+         const version = JSON.parse(body)
+        if(!version=="0.1")
+        {
+            console.warn("\x1b[31m", "Update Available, check https://github.com/eduhdev12/Zerox-Media-Player/")
+            console.warn("\x1b[31m", "Update Available, check https://github.com/eduhdev12/Zerox-Media-Player/")
+        }
+    });
+}
