@@ -14,16 +14,6 @@ var playing = 0
 var volume
 var currentstation = "stop" 
 
-var load={
-    radio1namefront: config.radio1name,
-    radio2namefront: config.radio2name,
-    radio3namefront: config.radio3name,
-    radio4namefront: config.radio4name,
-    radio5namefront: config.radio5name,
-    playerstatus: status,
-    currentvolume: volume
-}
-
 
 app.use( express.static( "public" ) );
 app.set('view-engine', 'ejs')
@@ -127,31 +117,6 @@ app.get('/up', function(req,res){
     console.log(`Volume was setted on ${volume}`)
 })
 
-app.get('/set', function(req, res){
-    var load={
-        radio1namefront: config.radio1name,
-        radio2namefront: config.radio2name,
-        radio3namefront: config.radio3name,
-        radio4namefront: config.radio4name,
-        radio5namefront: config.radio5name,
-        playerstatus: status,
-        currentvolume: req.query.volume
-    }    
-    res.render('test.ejs', load)
-    volume = req.query.volume
-    loudness.setVolume(volume, (err) => {
-        // Done
-    })
-    console.log("\x1b[36m",`Volume was setted on ${volume}`)
-
-})
-
-app.get('/p/:tagId', function(req, res) {
-    console.log("1tagId is set to " + req.params.tagId);
-  });
-app.get('/p', function(req, res) {
-    console.log("2tagId is set to " + req.query.tagId);
-  });
 app.get('/radio1', (req, res) =>{
     if(playing == 1){
         player.stop()
@@ -255,15 +220,6 @@ app.get('/radio5', (req, res) =>{
     player = new FFplay(config.radio5)
     playing = 1
     currentstation = config.radio5name
-})
-
-app.get('/test', (req,res)=>{
-    res.render('index.ejs')
-    console.log('cacatr')
-    loudness.setVolume(45, (err) => {
-    })
-    //player = new FFplay('./1.mp3')
-    player = new FFplay("./1.mp3");
 })
 
 app.get('/stop', (req, res)=>{
