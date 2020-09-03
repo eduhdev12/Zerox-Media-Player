@@ -26,9 +26,7 @@ var load={
 
 
 app.use( express.static( "public" ) );
-
 app.set('view-engine', 'ejs')
-
 app.get('/', (req, res) =>{
     if(currentstation==`stop`)
     {
@@ -53,7 +51,6 @@ app.get('/', (req, res) =>{
             currentvolume: volume
         }
     }
-
     res.render('index.ejs', load)
 })
 
@@ -90,7 +87,6 @@ app.get('/down', function(req,res){
     }
     res.render('index.ejs', load)
     loudness.setVolume(volume, (err) => {
-        // Done
     })
     console.log(`Volume was setted on ${volume}`)
 })
@@ -127,7 +123,6 @@ app.get('/up', function(req,res){
     }
     res.render('index.ejs', load)
     loudness.setVolume(volume, (err) => {
-        // Done
     })
     console.log(`Volume was setted on ${volume}`)
 })
@@ -154,12 +149,9 @@ app.get('/set', function(req, res){
 app.get('/p/:tagId', function(req, res) {
     console.log("1tagId is set to " + req.params.tagId);
   });
-
 app.get('/p', function(req, res) {
     console.log("2tagId is set to " + req.query.tagId);
   });
-
-
 app.get('/radio1', (req, res) =>{
     if(playing == 1){
         player.stop()
@@ -269,7 +261,6 @@ app.get('/test', (req,res)=>{
     res.render('index.ejs')
     console.log('cacatr')
     loudness.setVolume(45, (err) => {
-        // Done
     })
     //player = new FFplay('./1.mp3')
     player = new FFplay("./1.mp3");
@@ -308,7 +299,6 @@ app.listen(config.port, function(){
         console.log(volume)
     }
     });
-
 function check()
 {
     request('https://raw.githubusercontent.com/eduhdev12/Zerox-Media-Player/master/version.txt', function (error, response, body) {
