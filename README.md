@@ -22,6 +22,7 @@ ffmpeg library
 All in one line & if that doesn't do it, try installing them seperately.
 
 **Installing the Media-Player**
+
 Windows
 ```
 run install.bat
