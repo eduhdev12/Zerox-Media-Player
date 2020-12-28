@@ -18,6 +18,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.yt-link {
+  text-decoration: none;
+  color: silver;
+  justify-content: center;
+}
+
 body,
 button,
 input,
@@ -47,12 +53,12 @@ a > * {
   letter-spacing: 0px;
   text-align: center;
   text-transform: none;
-  color: rgba(255, 255, 255, 1);
-  padding: 15px 15px 15px 15px;
+  color: silver;
+  padding: 5px 5px 5px 5px;
   border-radius: 3px;
   box-shadow: 0px 0px 10px 0px rgba(3, 3, 3, 0.1);
   border: 0;
-  background-color: rgba(0, 188, 212, 1);
+  background-color: #0f0f0f;
 }
 
 /**
@@ -240,6 +246,7 @@ a > * {
  */
 
 .input-field {
+  width: 275px;
   display: block;
   margin: 10px;
   font-family: Roboto;
@@ -247,12 +254,12 @@ a > * {
   letter-spacing: 0px;
   text-align: left;
   text-transform: none;
-  color: rgba(3, 3, 3, 1);
-  padding: 10px 10px 10px 10px;
+  color:silver;
+  padding: 5px 5px 5px 5px;
   border-radius: 3px;
   box-shadow: 0px 0px 10px 0px rgba(3, 3, 3, 0.1);
-  border: 1px solid rgba(3, 3, 3, 1);
-  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid silver;
+  background-color: #171717;
 }
 
 /**
@@ -564,6 +571,16 @@ a > * {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  flex-shrink: 1;
+  flex-grow: 1;
+  align-self: stretch;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   flex-shrink: 1;
   flex-grow: 1;

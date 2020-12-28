@@ -6,6 +6,11 @@ A simple customizable remote media player that supports radio streaming channels
 
 [Discord](https://discord.gg/c6EXUwN)
 
+### Features
+*   **Radio stream url** - Play radio streams remotely
+*   **YouTube** - Play youtube songs from phone to pc
+*   **Volume Control** - Ability to control the volume from other device
+
 ### Self-Hosting
 **Configuration**
 ```
