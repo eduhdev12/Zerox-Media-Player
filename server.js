@@ -333,9 +333,9 @@ app.listen(config.port, function () {
     }
 });
 function check() {
-    request('https://raw.githubusercontent.com/eduhdev12/Zerox-Media-Player/master/version.txt', function (error, response, body) {
-        const version = JSON.parse(body)
-        if (version != "1.0.0") {
+    request('https://raw.githubusercontent.com/eduhdev12/Zerox-Media-Player/master/version.json', function (error, response, body) {
+        const responsebody = JSON.parse(body)
+        if (responsebody.version != "1.0.1") {
             console.warn("\x1b[31m", "Update Available, check https://github.com/eduhdev12/Zerox-Media-Player/")
             console.warn("\x1b[31m", "Update Available, check https://github.com/eduhdev12/Zerox-Media-Player/")
         }
