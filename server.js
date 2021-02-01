@@ -1,27 +1,27 @@
 const express = require('express')
-const fs = require('fs')
-const ffmpeg = require('ffmpeg')
-var http = require('http');
 const app = express()
+
+const fs = require('fs')
 const config = require('./config.json')
+
 var FFplay = require("ffplay");
 var player = new FFplay()
+
 const ytdl = require('ytdl-core')
 const loudness = require('loudness');
-const e = require('express');
+
 const request = require('request');
 const bodyParser = require('body-parser');
 const search = require('yt-search');
 var ip = require('ip');
-const yts = require('yt-search');
+
 var status = 'Not Playing'
 var ytsearches = []
 var ytsearchesurl = []
 require('console-stamp')(console, 'HH:MM:ss');
 var playing = 0
-var volume
+var volume;
 var currentstation = "stop"
-
 
 app.use(express.static("public"));
 app.use(bodyParser.json());
@@ -88,7 +88,7 @@ app.get('/down', function (req, res) {
         volume = 0
         console.log('Unable to down the volume')
     }
-    else volume = volume - 25;
+    else volume = volume - 5;
 
     if (playing == 0) {
         var load = {
@@ -123,7 +123,7 @@ app.get('/up', function (req, res) {
         volume = 100
         console.log('Unable to up the volume')
     }
-    else volume = volume + 25;
+    else volume = volume + 5;
     if (playing == 0) {
         var load = {
             radio1namefront: config.radio1name,
@@ -249,7 +249,6 @@ async function searchsong(name) {
             const views = String(v.views).padStart(10, ' ')
             ytsearches.push(v.title)
             ytsearchesurl.push(v.url)
-            //console.log(`${v} | ${views} | ${v.title} (${v.timestamp}) | ${v.author.name}`)
         })
         finalurl = r.all[0].url
     }
@@ -264,16 +263,6 @@ async function download(url) {
     stream.once('response', () => {
         starttime = Date.now()
     })
-    // stream.on('progress', (chunkLength, downloaded, total)=>{
-    //     const percent = downloaded / total;
-    //     const downloadedMinutes = (Date.now() - starttime) / 1000 / 60;
-    //     const estimatedDownloadTime = (downloadedMinutes / percent) - downloadedMinutes;
-    //     process.stdout.write(`${(percent * 100).toFixed(2)}% downloaded `);
-    //     process.stdout.write(`(${(downloaded / 1024 / 1024).toFixed(2)}MB of ${(total / 1024 / 1024).toFixed(2)}MB)\n`);
-    //     process.stdout.write(`running for: ${downloadedMinutes.toFixed(2)}minutes`);
-    //     process.stdout.write(`, estimated time left: ${estimatedDownloadTime.toFixed(2)}minutes `);
-    //     process.stdout.write(`\n`)
-    // })
     stream.on('end', () => {
         player = new FFplay("song.mp3")
     })
