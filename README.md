@@ -1,10 +1,15 @@
-# Zerox-Media-Player
+# Zerox-Media-Player (OUTDATED)
 
-A simple customizable remote media player that supports radio streaming channels.
+This version will not receive any improvements from now on, but we invite you to use the new version of Zerox by clicking [here](http://zerox.pro).
 
-[Installation Tutorial](https://www.youtube.com/watch?v=XHnL0YEjh9o)
+An intuitive and easy-to-configure app with a user-frendly interface that can be controlled using other mobile devices and has playback support for YouTube and radio stations as well as local files.
 
 [Discord](https://discord.gg/c6EXUwN)
+
+---
+### V1 (OUTDATED) Informations
+
+[Installation Tutorial](https://www.youtube.com/watch?v=XHnL0YEjh9o)
 
 ### Features
 *   **Radio stream url** - Play radio streams remotely
